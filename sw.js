@@ -8,7 +8,7 @@
    • Bumping CACHE_VERSION ships a clean cache: on activate, every older
      cache is deleted, so a new deploy fully replaces the previous one.
    • Cross-origin requests (the Cairo webfont) pass through untouched. */
-const CACHE_VERSION = 'magic-games-v2';
+const CACHE_VERSION = 'magic-games-v3';
 const CORE = [
   '/',
   '/index.html',
