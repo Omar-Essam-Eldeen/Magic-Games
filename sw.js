@@ -1,4 +1,4 @@
-/* Magic Games — service worker (v1.1 Cinematic Layers scheme).
+/* Magic Games — service worker (v1.4 scheme; cache magic-games-v5).
    Strategy:
    • The app shell (HTML, manifest, icons) is precached on install.
    • Every other same-origin GET (game chunks, data JSONs such as the quiz
@@ -8,7 +8,7 @@
    • Bumping CACHE_VERSION ships a clean cache: on activate, every older
      cache is deleted, so a new deploy fully replaces the previous one.
    • Cross-origin requests (the Cairo webfont) pass through untouched. */
-const CACHE_VERSION = 'magic-games-v4';
+const CACHE_VERSION = 'magic-games-v5';
 const CORE = [
   '/',
   '/index.html',
