@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Magic Games — ألعاب سحرية</title>
+    <meta name="description" content="Magic Games: a free game hub for family & friends. All 10 games playable — Memory Match, Guess the Word (EN + AR), Knowledge Quizzes (EN + AR), Sudoku, Arrows, Solitaire, Chess (2-player + 2,000 puzzles) and The Magic Host party quiz." />
+    <meta name="theme-color" content="#7c4dff" />
+    <!-- Open Graph basics -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Magic Games" />
+    <meta property="og:description" content="All your favourite mini-games in one place. Free, for family & friends." />
+    <meta property="og:image" content="/icons/icon-512.png" />
+    <link rel="icon" type="image/svg+xml" href="/icons/icon.svg" />
+    <link rel="apple-touch-icon" href="/icons/icon-192.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <script type="module" crossorigin src="/assets/index-D8ESRLvA.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-DZW1Mrr2.css">
+  </head>
+  <body>
+    <!-- Cinematic Layers backdrop (decorative): gradient fields, drifting
+         glow orbs, aurora band, film grain, vignette. See styles.css. -->
+    <div class="cine-backdrop" aria-hidden="true">
+      <span class="cine-orb cine-orb-1"></span>
+      <span class="cine-orb cine-orb-2"></span>
+      <span class="cine-orb cine-orb-3"></span>
+      <span class="cine-orb cine-orb-4"></span>
+      <span class="cine-aurora"></span>
+      <span class="cine-grain"></span>
+      <span class="cine-vignette"></span>
+    </div>
+    <div id="app">
+      <header class="app-header">
+        <button class="brand" id="brand-home" type="button" aria-label="Magic Games — home">
+          <span class="brand-mark" aria-hidden="true"><img src="/art/logo-emblem.webp" alt="" width="34" height="34"></span>
+          <span class="brand-name" data-i18n="appTitle">Magic Games</span>
+        </button>
+        <div class="header-actions">
+          <span class="streak-chip" id="streak-chip" title="Play streak">
+            <span aria-hidden="true">🔥</span>
+            <span id="streak-count">0</span>
+            <span class="streak-label" data-i18n="streak">day streak</span>
+          </span>
+          <button class="icon-btn" id="theme-toggle" type="button" data-i18n-aria="themeToggle" aria-label="Toggle theme">🌙</button>
+          <button class="icon-btn" id="records-open" type="button" data-i18n-aria="recordsTitle" aria-label="Records">🏆</button>
+          <button class="icon-btn" id="settings-open" type="button" data-i18n-aria="settings" aria-label="Settings">⚙️</button>
+        </div>
+      </header>
+
+      <main class="app-main">
+        <!-- LOBBY -->
+        <section id="view-lobby" class="view">
+          <!-- Stage 14 (v1.6.0) — "The Stage" mobile hub. Filled by
+               main.js (renderStageHub) from the same real stores as
+               the desktop lobby below. stage.css shows this block
+               ONLY at ≤719px and hides the desktop blocks (.hero,
+               daily row, records bar, card grid) there instead; at
+               desktop widths this container is display:none and the
+               lobby renders exactly as v1.5.2. -->
+          <div class="stage-hub" id="stage-hub">
+            <section class="stage-spot" id="stage-spotlight" aria-labelledby="stage-spot-name"></section>
+            <section class="stage-tonight" id="stage-tonight" aria-labelledby="stage-tonight-title"></section>
+            <div class="stage-jump" id="stage-jump" hidden></div>
+            <section class="stage-all">
+              <h2 class="stage-all-title"><span aria-hidden="true">✦</span> <span data-i18n="stageAllGames">All games</span></h2>
+              <div class="stage-rows" id="stage-rows" role="list"></div>
+            </section>
+          </div>
+          <div class="hero">
+            <div class="hero-mark" id="hero-mark" aria-hidden="true"></div>
+            <h1 data-i18n="tagline">All your favourite games, in one place</h1>
+            <p data-i18n="subtitle">Free forever — made for family &amp; friends.</p>
+            <div class="hero-cluster" id="hero-cluster" aria-hidden="true"></div>
+            <div class="hero-stats" id="hero-stats"></div>
+          </div>
+          <section class="daily-section" id="daily-section">
+            <div class="daily-row" id="daily-row" role="list"></div>
+          </section>
+          <!-- Stage 13.1: the bar is built natively — deep violet-navy
+               panel, gold gradient frame, engraved diamond lattice,
+               a drawn gold trophy and the real localised label as live
+               text (styles.css .records-cta), so it stays sharp at
+               every width in both themes. (Stage 13's screenshot-art
+               cover read as a pasted image and cropped its trophy.) -->
+          <button class="records-cta" id="records-open-lobby" type="button">
+            <span class="records-cta-trophy" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" focusable="false"><defs><linearGradient id="mgTrophyGold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe9b0"/><stop offset="0.5" stop-color="#f6b73c"/><stop offset="1" stop-color="#d98a12"/></linearGradient></defs><path d="M6 3.5h12v4.2c0 3.3-2.7 5.8-6 5.8s-6-2.5-6-5.8V3.5Z" fill="url(#mgTrophyGold)"/><path d="M6 4.6C4 4.6 3 5.9 3.2 7.3c.2 1.7 1.7 3 3.3 3.1" fill="none" stroke="url(#mgTrophyGold)" stroke-width="1.7" stroke-linecap="round"/><path d="M18 4.6c2 0 3 1.3 2.8 2.7-.2 1.7-1.7 3-3.3 3.1" fill="none" stroke="url(#mgTrophyGold)" stroke-width="1.7" stroke-linecap="round"/><path d="M11 13.6h2v2.9h-2z" fill="url(#mgTrophyGold)"/><rect x="7.6" y="16.8" width="8.8" height="2" rx="1" fill="url(#mgTrophyGold)"/><rect x="6.4" y="19.6" width="11.2" height="1.6" rx="0.8" fill="url(#mgTrophyGold)" opacity="0.85"/></svg></span>
+            <span data-i18n="recordsTitle">Records</span>
+          </button>
+          <div id="games-grid" class="games-grid" role="list"></div>
+        </section>
+
+        <!-- RECORDS -->
+        <section id="view-records" class="view" hidden>
+          <div class="game-topbar">
+            <button class="btn btn-ghost" id="records-back" type="button">
+              <span aria-hidden="true">←</span> <span data-i18n="back">Games</span>
+            </button>
+            <h2 class="game-title" data-i18n="recordsTitle">Records</h2>
+            <span class="game-topbar-spacer"></span>
+          </div>
+          <div id="records-root"></div>
+        </section>
+
+        <!-- GAME HOST -->
+        <section id="view-game" class="view" hidden>
+          <div class="game-topbar">
+            <button class="btn btn-ghost" id="back-to-lobby" type="button">
+              <span aria-hidden="true">←</span> <span data-i18n="back">Games</span>
+            </button>
+            <h2 id="game-title" class="game-title"></h2>
+            <span class="game-topbar-spacer"></span>
+          </div>
+          <!-- Cinematic stage header: the open game's emblem on an
+               accent-tinted layered mesh (decorative). -->
+          <div class="game-hero" aria-hidden="true">
+            <span class="game-hero-rings"><i></i><i></i></span>
+            <span class="game-hero-art" id="game-hero-art"></span>
+          </div>
+          <div id="game-root"></div>
+        </section>
+
+        <!-- SETTINGS -->
+        <section id="view-settings" class="view" hidden>
+          <div class="game-topbar">
+            <button class="btn btn-ghost" id="settings-back" type="button">
+              <span aria-hidden="true">←</span> <span data-i18n="back">Games</span>
+            </button>
+            <h2 class="game-title" data-i18n="settings">Settings</h2>
+            <span class="game-topbar-spacer"></span>
+          </div>
+
+          <div class="settings-card">
+            <h3 data-i18n="language">Language</h3>
+            <div class="segmented" role="group" aria-label="Language">
+              <button type="button" class="seg-btn" data-lang="en">English</button>
+              <button type="button" class="seg-btn" data-lang="ar">العربية</button>
+            </div>
+          </div>
+
+          <div class="settings-card">
+            <h3 data-i18n="theme">Theme</h3>
+            <div class="segmented" role="group" aria-label="Theme">
+              <button type="button" class="seg-btn" data-theme="light">☀️ <span data-i18n="light">Light</span></button>
+              <button type="button" class="seg-btn" data-theme="dark">🌙 <span data-i18n="dark">Dark</span></button>
+            </div>
+          </div>
+
+          <div class="settings-card">
+            <h3 data-i18n="sound">Sound</h3>
+            <div class="segmented" role="group" aria-label="Sound">
+              <button type="button" class="seg-btn" data-sound="on">🔊 <span data-i18n="on">On</span></button>
+              <button type="button" class="seg-btn" data-sound="off">🔇 <span data-i18n="off">Off</span></button>
+            </div>
+          </div>
+
+          <div class="settings-card">
+            <h3 data-i18n="installTitle">Install Magic Games</h3>
+            <p data-i18n="installIntro">Add Magic Games to your home screen — it opens full-screen, just like a real app, and works offline.</p>
+            <div class="install-steps">
+              <div class="install-block">
+                <h4>🤖 Android (Chrome)</h4>
+                <ol>
+                  <li data-i18n="installAndroid1">Tap the ⋮ menu in Chrome.</li>
+                  <li data-i18n="installAndroid2">Tap “Install app” (or “Add to Home screen”).</li>
+                  <li data-i18n="installAndroid3">Tap Install — the 🪄 icon appears on your home screen.</li>
+                </ol>
+              </div>
+              <div class="install-block">
+                <h4>🍎 iPhone (Safari)</h4>
+                <ol>
+                  <li data-i18n="installIos1">Tap the Share button (square with an arrow, at the bottom).</li>
+                  <li data-i18n="installIos2">Scroll down and tap “Add to Home Screen”.</li>
+                  <li data-i18n="installIos3">Tap Add — the 🪄 icon appears on your home screen.</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <!-- Stage 14: mobile thumb nav — fixed bottom bar (stage.css,
+           ≤719px only, hidden while a game is open). Switches between
+           the existing lobby / records / settings views. -->
+      <nav class="stage-nav" id="stage-nav" data-i18n-aria="stageNavLabel" aria-label="Main navigation" hidden>
+        <button type="button" class="stage-nav-btn" data-nav="lobby">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" focusable="false"><rect x="2.5" y="7.5" width="19" height="10" rx="5"/><path d="M8 10.8v3M6.5 12.3h3"/><circle cx="15.6" cy="11.3" r="0.7" fill="currentColor" stroke="none"/><circle cx="17.9" cy="13.8" r="0.7" fill="currentColor" stroke="none"/></svg>
+          <span data-i18n="back">Games</span>
+        </button>
+        <button type="button" class="stage-nav-btn" data-nav="records">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M4.5 20v-6M9.8 20V5M15.2 20v-9M20.5 20V8"/></svg>
+          <span data-i18n="recordsTitle">Records</span>
+        </button>
+        <button type="button" class="stage-nav-btn" data-nav="settings">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M4 7h8M18 7h2M4 12h2M12 12h8M4 17h11M19 17h1"/><circle cx="15" cy="7" r="2.1"/><circle cx="9" cy="12" r="2.1"/><circle cx="16.5" cy="17" r="2.1"/></svg>
+          <span data-i18n="settings">Settings</span>
+        </button>
+      </nav>
+
+      <footer class="app-footer">
+        <span data-i18n="footer">Made with 🪄 for family &amp; friends</span>
+      </footer>
+    </div>
+
+  </body>
+</html>
